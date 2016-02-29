@@ -4,6 +4,7 @@ import sys
 import traceback
 from datetime import datetime, timedelta
 from functools import wraps
+from uuid import uuid4
 
 import newrelic.agent
 import waffle
@@ -275,6 +276,8 @@ class Document(NotificationsMixin, models.Model):
     summary_html = models.TextField(editable=False, blank=True, null=True)
 
     summary_text = models.TextField(editable=False, blank=True, null=True)
+
+    uuid = models.UUIDField(default=uuid4, editable=False, null=True)
 
     class Meta(object):
         unique_together = (
